@@ -1,0 +1,33 @@
+dr:
+- compartment_id: "<compartment_id>"
+  defined_tags: null
+  display_name: "drpg-phx"
+  log_location:
+    bucket: "bucket-dr-log-drtest"
+    namespace: "iotdev"
+  members: 
+    - autonomous_database_standby_type_for_dr_drills: "SNAPSHOT_STANDBY"
+      member_id: "<atpdb-ocid>"
+      member_type: "AUTONOMOUS_DATABASE"
+    - member_id: "<oke-ocid>"
+      member_type: "OKE_CLUSTER"
+      peer_cluster_id: "<peer-oke-ocid>"
+      backup_config:
+        backup_schedule: "FREQ=HOURLY;BYHOUR=0;BYMINUTE=0;INTERVAL=1"
+        exclude_namespaces: []
+        image_replication_vault_secret_id: null
+        max_number_of_backups_retained: 3
+        namespaces: []
+        replicate_images: "ENABLE"
+      backup_location:
+        bucket: "bucket-dr-backup-drtest"
+        namespace: "iotdev"
+    - member_id: "<bucket-ocid>"
+      member_type: "OBJECT_STORAGE_BUCKET"
+      namespace: "iotdev"
+      bucket: "bucket-phx"
+      
+dr_plan:
+  display_name: switchover-to-phx
+  type: SWITCHOVER
+  defined_tags: null
