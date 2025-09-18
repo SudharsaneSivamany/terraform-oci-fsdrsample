@@ -26,6 +26,17 @@ dr:
       member_type: "OBJECT_STORAGE_BUCKET"
       namespace: "iotdev"
       bucket: "bucket-phx"
+    - member_id: "<ocid-vg>"
+      member_type: "VOLUME_GROUP"
+    - member_id: "<ocid-instance>"
+      member_type: "COMPUTE_INSTANCE_MOVABLE"
+      vnic_mappings: 
+      -  destination_nsg_id_list: []
+         destination_primary_private_ip_address: null
+         destination_primary_private_ip_hostname_label: null
+         destination_reserved_public_ip_id: null
+         destination_subnet_id: "<ocid-subnet>"
+         source_vnic_id: "<ocid-vnic>"
       
 dr_plan:
   display_name: switchover-to-phx
